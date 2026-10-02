@@ -17,7 +17,6 @@
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   
   body{
-    /* شيلنا الـ fixed background عشان ميبطأش الموبايل */
     background: linear-gradient(180deg, #1a0d18 0%, #0d030a 100%);
     background-color: #150510;
     color:#fff;
@@ -31,25 +30,23 @@
   .title{font-family:'Aref Ruqaa',serif;}
   .arabic{font-family:'Amiri',serif;}
 
-  /* شيلنا الـ backdrop-filter عشان الأداء */
   .glass{
     background: linear-gradient(160deg, rgba(60,20,50,0.85), rgba(30,10,25,0.9));
     border:1px solid rgba(255,180,215,.15);
     box-shadow: 0 8px 32px rgba(0,0,0,.3);
   }
 
-  /* خففنا الأنيميشن جداً */
   .float-item{
     position:fixed; bottom:-80px;
     animation: floatUp linear forwards;
     pointer-events:none; z-index:0;
     white-space: nowrap;
-    opacity: 0.8;
+    opacity: 0.85;
   }
   @keyframes floatUp{
     0%{ transform:translateY(0) rotate(0); opacity:0 }
-    10%{ opacity:.8 }
-    90%{ opacity:.8 }
+    10%{ opacity:.85 }
+    90%{ opacity:.85 }
     100%{ transform:translateY(-115vh) rotate(360deg); opacity:0 }
   }
 
@@ -57,11 +54,11 @@
     position:fixed; top:-40px;
     animation: petalFall linear forwards;
     pointer-events:none; z-index:0;
-    opacity: 0.7;
+    opacity: 0.75;
   }
   @keyframes petalFall{
     0%{ transform:translateY(0) rotate(0); opacity:0 }
-    10%{ opacity:.7 }
+    10%{ opacity:.75 }
     100%{ transform:translateY(115vh) rotate(360deg); opacity:0 }
   }
 
@@ -82,7 +79,7 @@
     background:linear-gradient(90deg, transparent, rgba(255,143,192,.5), transparent);
   }
 
-  /* ========== شاشة القفل ========== */
+  /* شاشة القفل */
   .lock{
     position:fixed; inset:0; z-index:9999;
     display:flex; align-items:center; justify-content:center; padding:20px;
@@ -92,15 +89,26 @@
   .lock.open{ opacity:0; visibility:hidden; pointer-events:none; }
 
   .walking-cat{
-    position:absolute; bottom: 10%; font-size: 60px; z-index: 1;
+    position:absolute; bottom: 12%; font-size: 60px; z-index: 1;
     pointer-events:none;
     animation: catWalk 15s linear infinite;
+    text-shadow: 0 0 20px rgba(255,143,192,.6);
   }
   @keyframes catWalk{
     0% { left: -15%; transform: scaleX(1); }
     50% { left: 85%; transform: scaleX(1); }
     51% { transform: scaleX(-1); }
     100% { left: -15%; transform: scaleX(-1); }
+  }
+  .corner-cat{
+    position:absolute; top: 8%; right: 6%; font-size: 38px; z-index: 1;
+    pointer-events:none;
+    animation: bob 3s ease-in-out infinite;
+  }
+  .corner-cat-2{
+    position:absolute; bottom: 12%; left: 6%; font-size: 32px; z-index: 1;
+    pointer-events:none;
+    animation: bob 3.5s ease-in-out infinite reverse;
   }
 
   .lock-card{
@@ -127,6 +135,7 @@
     font-family:'Cairo',sans-serif;
   }
   .pw-input:focus{ border-color:var(--pink-hot); background:rgba(255,255,255,.12); }
+  .pw-input::placeholder{ color:rgba(255,180,215,.4); font-size:14px }
   .pw-btn{
     width:100%; margin-top:16px; padding:16px; border-radius:16px; border:none;
     background:linear-gradient(90deg,#ff8fc0,#f5c6a5); color:#2a0a1a;
@@ -142,7 +151,7 @@
     75%{ transform:translateX(8px) }
   }
 
-  /* ========== الظرف والرسالة ========== */
+  /* الظرف والرسالة */
   .env-wrap{ perspective:1000px; width: 100%; }
   .env{
     cursor:pointer; transition:.6s cubic-bezier(.4,0,.2,1);
@@ -156,19 +165,19 @@
     opacity:0; transform:translateY(30px) scale(.95);
     transition:.6s cubic-bezier(.4,0,.2,1);
     pointer-events:none; position:absolute; inset:0;
-    background: #1a0d18; /* خلفية صلبة عشان الكلام يبان */
+    background: #1a0d18;
     border: 1px solid rgba(255,180,215,.3);
     border-radius: 24px;
     display: flex; flex-direction: column;
     padding: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.5);
   }
   .msg-card.show{ opacity:1; transform:none; pointer-events:auto; position:relative; }
   
-  /* سكرول للرسالة الطويلة */
   .msg-content {
     overflow-y: auto;
     max-height: 55vh;
-    padding-left: 10px;
+    padding-left: 8px;
     text-align: right;
     scrollbar-width: thin;
     scrollbar-color: var(--pink) transparent;
@@ -191,14 +200,14 @@
     display:flex; align-items:center; justify-content:center;
     border:1px solid rgba(255,180,215,.2);
   }
+  .ph span{ font-size:44px; opacity:.6 }
   .ph img{
     position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
     transition:transform .5s;
   }
   .ph:hover img{ transform:scale(1.08) }
 
-  /* شيلنا الفلاتر من الصوت عشان ميضربش */
-  audio{ width:100%; border-radius:12px; }
+  audio{ width:100%; border-radius:12px; filter: invert(0.9) hue-rotate(300deg) saturate(0.7); }
 
   .btn-magic{
     background:linear-gradient(90deg,#ff8fc0,#f5c6a5); color:#2a0a1a;
@@ -220,266 +229,300 @@
     .lock-cat{ font-size: 56px; }
     .ph{ height: 9rem; border-radius: 1rem; }
     .msg-content { max-height: 50vh; }
+    .walking-cat{ font-size: 48px; bottom: 10%; }
+    .corner-cat{ font-size: 30px; top: 5%; right: 4%; }
+    .corner-cat-2{ font-size: 26px; bottom: 8%; left: 4%; }
   }
 </style>
 </head>
 <body class="locked">
 
-<!-- شاشة القفل -->
+<!-- ========== شاشة القفل ========== -->
 <div id="lock" class="lock">
   <div class="walking-cat">🐈‍⬛</div>
-  <div class="lock-card glass">
+  <div class="corner-cat">🐱</div>
+  <div class="corner-cat-2">🐈</div>
+
+  <div id="lockCard" class="lock-card glass">
     <div class="lock-cat">🐱</div>
     <h1 class="title text-3xl grad-text">نورتي موقعك يحبيبه بابا</h1>
-    <p class="text-white/60 text-sm mt-3">المكان ده ليكي إنتي بس…<br>اكتبي الباسورد السري 🌸</p>
+    <p class="text-white/60 text-sm mt-3 leading-relaxed">
+      المكان ده ليكي إنتي بس…<br>اكتبي الباسورد السري 🌸
+    </p>
+
     <input id="pw" class="pw-input" type="password" placeholder="الباسورد السري 💗" autocomplete="off" />
+
     <button id="pwBtn" class="pw-btn" onclick="tryUnlock()">دخول 💗</button>
+
     <p id="err" class="err"></p>
     <p class="text-white/30 text-[11px] mt-2">🔒 ندي احلي بنت في الدنيا دخلت قلبي عملت عليه ب القفل</p>
   </div>
 </div>
 
-<!-- الموقع -->
+<!-- ========== الموقع ========== -->
+
 <nav class="fixed top-0 inset-x-0 z-50">
-  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-    <span class="title text-lg grad-text">بحبك يندي 🌸</span>
-    <a href="#message" class="text-xs bg-gradient-to-l from-[#ff8fc0] to-[#d8b4fe] text-[#2a0a1a] px-4 py-2 rounded-full font-bold">افتحي الرسالة 💌</a>
+  <div class="max-w-6xl mx-auto px-3 sm:px-4 py-3 flex items-center justify-between gap-2">
+    <span class="title text-lg sm:text-xl grad-text whitespace-nowrap">بحبك يندي 🌸</span>
+    <a href="#message" class="text-[11px] sm:text-xs bg-gradient-to-l from-[#ff8fc0] to-[#d8b4fe] text-[#2a0a1a] px-3 sm:px-4 py-2 rounded-full font-bold shadow-lg whitespace-nowrap">افتحي الرسالة 💌</a>
   </div>
 </nav>
 
 <!-- HERO -->
-<section id="home" class="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20 pb-10 relative">
-  <p class="text-[#f5c6a5] tracking-[.4em] text-xs mb-6">SINCE 09 · 02 · 2024</p>
-  <div class="text-6xl mb-4 heart-beat">💖</div>
-  <h1 class="title text-5xl md:text-7xl leading-tight text-white mb-4">
-    <span class="grad-text">بحبك</span> يا <span class="grad-text">ندي</span>
+<section id="home" class="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-5 pt-20 pb-10 relative">
+  <p class="text-[#f5c6a5] tracking-[.35em] sm:tracking-[.5em] text-[10px] sm:text-sm mb-6">SINCE 09 · 02 · 2024</p>
+
+  <div class="text-6xl sm:text-7xl mb-4 heart-beat">💖</div>
+
+  <h1 class="title text-4xl sm:text-6xl md:text-8xl leading-tight">
+    <span class="grad-text">بحبك</span>
+    <span class="text-[#ff8fc0] mx-1 sm:mx-2">يا</span>
+    <span class="grad-text">ندي</span>
   </h1>
-  <p class="text-white/70 max-w-xl text-sm md:text-lg leading-relaxed arabic px-2 mb-10">
-    انتي كل حاجه لجوزك ف الدنيا ي احلي ندي ي اجمل ندي <br>بدمنك اوي يست البنات انتي 🌸
+
+  <p class="mt-6 text-white/75 max-w-xl text-sm sm:text-lg leading-relaxed arabic px-2">
+    انتي كل حاجه لجوزك ف الدنيا ي احلي ندي ي اجمل ندي<br>بدمنك اوي يست البنات انتي 🌸
   </p>
-  <div class="flex flex-wrap gap-3 justify-center">
-    <a href="#message" class="bg-gradient-to-l from-[#ff8fc0] to-[#d8b4fe] text-[#2a0a1a] font-bold px-6 py-3 rounded-full text-sm">عندي حاجة أقولها 💌</a>
-    <a href="#gallery" class="glass px-6 py-3 rounded-full text-sm">صورنا 🌸</a>
+
+  <div class="mt-10 flex flex-wrap gap-3 justify-center">
+    <a href="#message" class="bg-gradient-to-l from-[#ff8fc0] to-[#d8b4fe] text-[#2a0a1a] font-bold px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base">
+      عندي حاجة أقولها 💌
+    </a>
+    <a href="#gallery" class="glass px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base">
+      صورنا 🌸
+    </a>
   </div>
-  <div class="absolute bottom-8 animate-bounce text-[#ff8fc0] text-2xl">↓</div>
+
+  <div class="absolute bottom-6 sm:bottom-8 animate-bounce text-[#ff8fc0] text-2xl">↓</div>
 </section>
 
 <!-- العدّاد -->
-<section id="counter" class="py-16 px-4">
+<section id="counter" class="py-16 sm:py-20 px-4 sm:px-5">
   <div class="max-w-5xl mx-auto text-center">
     <div class="divider">❀ ✿ ❀</div>
-    <h2 class="title text-3xl md:text-5xl grad-text mb-3">بقالنا مع بعض 💗</h2>
-    <p class="text-white/50 mb-10 text-sm">والعدّاد لسه شغال… وقلبي كمان</p>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-      <div class="glass rounded-3xl py-6 card-hover">
-        <div class="text-2xl mb-2">🌸</div>
-        <div id="d" class="text-3xl font-extrabold text-[#ff8fc0]">0</div>
-        <div class="text-white/50 text-xs mt-2">يوم</div>
+    <h2 class="title text-3xl sm:text-4xl md:text-5xl grad-text mb-3">بقالنا مع بعض 💗</h2>
+    <p class="text-white/55 mb-10 sm:mb-12 text-sm">والعدّاد لسه شغال… وقلبي كمان</p>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+      <div class="glass rounded-3xl py-6 sm:py-8 card-hover">
+        <div class="text-2xl sm:text-3xl mb-2">🌸</div>
+        <div id="d" class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#ff8fc0]">0</div>
+        <div class="text-white/55 text-xs sm:text-sm mt-2">يوم</div>
       </div>
-      <div class="glass rounded-3xl py-6 card-hover">
-        <div class="text-2xl mb-2">💗</div>
-        <div id="h" class="text-3xl font-extrabold text-[#f5c6a5]">0</div>
-        <div class="text-white/50 text-xs mt-2">ساعة</div>
+      <div class="glass rounded-3xl py-6 sm:py-8 card-hover">
+        <div class="text-2xl sm:text-3xl mb-2">💗</div>
+        <div id="h" class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#f5c6a5]">0</div>
+        <div class="text-white/55 text-xs sm:text-sm mt-2">ساعة</div>
       </div>
-      <div class="glass rounded-3xl py-6 card-hover">
-        <div class="text-2xl mb-2">💖</div>
-        <div id="m" class="text-3xl font-extrabold text-[#d8b4fe]">0</div>
-        <div class="text-white/50 text-xs mt-2">دقيقة</div>
+      <div class="glass rounded-3xl py-6 sm:py-8 card-hover">
+        <div class="text-2xl sm:text-3xl mb-2">💖</div>
+        <div id="m" class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#d8b4fe]">0</div>
+        <div class="text-white/55 text-xs sm:text-sm mt-2">دقيقة</div>
       </div>
-      <div class="glass rounded-3xl py-6 card-hover">
-        <div class="text-2xl mb-2">💕</div>
-        <div id="s" class="text-3xl font-extrabold text-[#ff8fc0]">0</div>
-        <div class="text-white/50 text-xs mt-2">ثانية</div>
+      <div class="glass rounded-3xl py-6 sm:py-8 card-hover">
+        <div class="text-2xl sm:text-3xl mb-2">💕</div>
+        <div id="s" class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#ff8fc0]">0</div>
+        <div class="text-white/55 text-xs sm:text-sm mt-2">ثانية</div>
       </div>
     </div>
-    <p class="mt-8 text-white/60 arabic text-base">
+
+    <p class="mt-8 sm:mt-10 text-white/65 arabic text-base sm:text-lg">
       يعني <span id="totalDays" class="text-[#ff4f8b] font-bold">0</span> يوم من أجمل أيام عمري 🌸
     </p>
   </div>
 </section>
 
 <!-- التايم لاين -->
-<section id="story" class="py-16 px-4">
+<section id="story" class="py-16 sm:py-20 px-4 sm:px-5">
   <div class="max-w-3xl mx-auto">
     <div class="divider">❀ ✿ ❀</div>
-    <h2 class="title text-3xl md:text-5xl grad-text text-center mb-4">حكايتنا 🌸</h2>
-    <p class="text-white/50 text-center mb-10 text-sm">هفكرك ب اول علاقتنا</p>
-    <div class="relative pr-6 border-r border-[#ff8fc0]/25 space-y-8">
+    <h2 class="title text-3xl sm:text-4xl md:text-5xl grad-text text-center mb-4">حكايتنا 🌸</h2>
+    <p class="text-white/55 text-center mb-10 sm:mb-14 text-sm">هفكرك ب اول علاقتنا</p>
+
+    <div class="relative pr-7 sm:pr-10 border-r border-[#ff8fc0]/25 space-y-8 sm:space-y-10">
+
       <div class="relative">
-        <span class="absolute -right-[31px] top-2 w-4 h-4 rounded-full bg-[#ff8fc0]"></span>
-        <div class="glass rounded-3xl p-5 card-hover">
+        <span class="absolute -right-[37px] sm:-right-[49px] top-2 w-4 h-4 rounded-full bg-[#ff8fc0]"></span>
+        <div class="glass rounded-3xl p-5 sm:p-6 card-hover">
           <span class="text-[#f5c6a5] text-xs">9 فبراير 2024</span>
-          <h3 class="text-lg font-bold mt-1">أول يوم ليكي في حياتي 🌸</h3>
-          <p class="text-white/60 text-sm mt-2 arabic">كان اجمل يوم ف الدنيا مع اجمل بنوته ف الدنيا</p>
+          <h3 class="text-lg sm:text-xl font-bold mt-1">أول يوم ليكي في حياتي 🌸</h3>
+          <p class="text-white/65 text-sm mt-2 arabic">كان اجمل يوم ف الدنيا مع اجمل بنوته ف الدنيا</p>
         </div>
       </div>
+
       <div class="relative">
-        <span class="absolute -right-[31px] top-2 w-4 h-4 rounded-full bg-[#d8b4fe]"></span>
-        <div class="glass rounded-3xl p-5 card-hover">
+        <span class="absolute -right-[37px] sm:-right-[49px] top-2 w-4 h-4 rounded-full bg-[#d8b4fe]"></span>
+        <div class="glass rounded-3xl p-5 sm:p-6 card-hover">
           <span class="text-[#f5c6a5] text-xs">أول رسالة</span>
-          <h3 class="text-lg font-bold mt-1"> اما قولتلك بحبك اول مرا فاكره؟</h3>
-          <p class="text-white/60 text-sm mt-2 arabic">كلمه بحبك اتحولت لادمان حرفيا ليكي.</p>
+          <h3 class="text-lg sm:text-xl font-bold mt-1">اما قولتلك بحبك اول مرا فاكره؟</h3>
+          <p class="text-white/65 text-sm mt-2 arabic">كلمه بحبك اتحولت لادمان حرفيا ليكي.</p>
         </div>
       </div>
+
       <div class="relative">
-        <span class="absolute -right-[31px] top-2 w-4 h-4 rounded-full bg-[#ff8fc0]"></span>
-        <div class="glass rounded-3xl p-5 card-hover">
+        <span class="absolute -right-[37px] sm:-right-[49px] top-2 w-4 h-4 rounded-full bg-[#ff8fc0]"></span>
+        <div class="glass rounded-3xl p-5 sm:p-6 card-hover">
           <span class="text-[#f5c6a5] text-xs">أول خروجة</span>
-          <h3 class="text-lg font-bold mt-1">أول مرة إيدك في إيدي</h3>
-          <p class="text-white/60 text-sm mt-2 arabic">طبعا مش محتاج افكرك ب اليوم دا ولا ب اندهاشنا ببعض ولا بحلاوتك ولا بمسكه ايدك ال زي القمر ولا م كتر حلاوتك كنت هقوم ارميكي ف البحر عشان محدش يشوفك يبومه ووانتي قاعده كدا سانده عكتفي ونا بحاسبب يبتتتتت</p>
+          <h3 class="text-lg sm:text-xl font-bold mt-1">أول مرة إيدك في إيدي</h3>
+          <p class="text-white/65 text-sm mt-2 arabic">طبعا مش محتاج افكرك ب اليوم دا ولا ب اندهاشنا ببعض ولا بحلاوتك ولا بمسكه ايدك ال زي القمر ولا م كتر حلاوتك كنت هقوم ارميكي ف البحر عشان محدش يشوفك يبومه ووانتي قاعده كدا سانده عكتفي ونا بحاسبب يبتتتتت</p>
         </div>
       </div>
+
       <div class="relative">
-        <span class="absolute -right-[31px] top-2 w-4 h-4 rounded-full bg-[#d8b4fe]"></span>
-        <div class="glass rounded-3xl p-5 card-hover">
+        <span class="absolute -right-[37px] sm:-right-[49px] top-2 w-4 h-4 rounded-full bg-[#d8b4fe]"></span>
+        <div class="glass rounded-3xl p-5 sm:p-6 card-hover">
           <span class="text-[#f5c6a5] text-xs">اليوم</span>
-          <h3 class="text-lg font-bold mt-1">ولسه بحبك أكتر ي ندي 💍</h3>
-          <p class="text-white/60 text-sm mt-2 arabic">وكل يوم بيعدي بحبك فيه أكتر من اللي قبله.</p>
+          <h3 class="text-lg sm:text-xl font-bold mt-1">ولسه بحبك أكتر ي ندي 💍</h3>
+          <p class="text-white/65 text-sm mt-2 arabic">وكل يوم بيعدي بحبك فيه أكتر من اللي قبله.</p>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
 <!-- الأغنية -->
-<section id="music" class="py-16 px-4">
+<section id="music" class="py-16 sm:py-20 px-4 sm:px-5">
   <div class="max-w-2xl mx-auto text-center">
     <div class="divider">♪ ♫ ♪</div>
-    <h2 class="title text-3xl md:text-5xl grad-text mb-4">أغنيه مراتي ندي 🎵</h2>
-    <p class="text-white/50 mb-8 text-sm">الاغنيه ال نا م فاهم منها اي حاجه بس اهو عشانك وخلاصصص</p>
-    <div class="glass rounded-[32px] p-6">
-      <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-[#2a0a1a] flex items-center justify-center text-3xl border-4 border-[#ff8fc0]">
+    <h2 class="title text-3xl sm:text-4xl md:text-5xl grad-text mb-4">أغنيه مراتي ندي 🎵</h2>
+    <p class="text-white/55 mb-8 sm:mb-10 text-sm">الاغنيه ال نا م فاهم منها اي حاجه بس اهو عشانك وخلاصصص</p>
+
+    <div class="glass rounded-[26px] sm:rounded-[32px] p-6 sm:p-9">
+      <div class="w-32 h-32 sm:w-40 sm:h-40 mx-auto mb-6 sm:mb-7 rounded-full bg-[#2a0a1a] flex items-center justify-center text-3xl sm:text-4xl border-4 border-[#ff8fc0]" style="box-shadow: 0 0 30px rgba(255,143,192,.5);">
         🎵
       </div>
-      <h3 class="font-bold text-xl grad-text">اغنيه ندي بنتي المفضله</h3>
-      <p class="text-white/50 text-sm mb-6">نفسي افهم حرففف</p>
-      
-      <!-- ⚠️ غير الرابط ده لملفك الصوتي -->
-      <!-- لو هتحط الأغنية في فولدر images، خليها كدا: src="images/amr-diab.mp3" -->
-      <audio controls src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+
+      <h3 class="font-bold text-xl sm:text-2xl grad-text">اغنيه ندي بنتي المفضله</h3>
+      <p class="text-white/55 text-sm mb-6 sm:mb-7">نفسي افهم حرففف</p>
+
+      <audio controls src="images/amr-diab.mp3">
         متصفحك مش بيدعم الصوت
       </audio>
-      <p class="text-white/40 text-xs mt-4 arabic">* حطي ملف الأغنية في فولدر images وسميه amr-diab.mp3</p>
     </div>
   </div>
 </section>
 
 <!-- الجاليري -->
-<section id="gallery" class="py-16 px-4">
+<section id="gallery" class="py-16 sm:py-20 px-4 sm:px-5">
   <div class="max-w-6xl mx-auto">
     <div class="divider">❀ ✿ ❀</div>
-    <h2 class="title text-3xl md:text-5xl grad-text text-center mb-4">صورنا 🌸</h2>
-    <p class="text-white/50 text-center mb-10 text-sm">صور لاحلي اسم ف الدنيا اسم بنوتي ندي والايفون ال هجبهولها</p>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-      <!-- ⚠️ غير الصور دي لصوركم الحقيقية -->
-      <!-- لو هتحطهم في فولدر images، خليها كدا: src="images/photo1.jpg" -->
-      <div class="ph"><img src="https://picsum.photos/seed/love1/400/400" alt=""></div>
-      <div class="ph"><img src="https://picsum.photos/seed/love2/400/400" alt=""></div>
-      <div class="ph"><img src="https://picsum.photos/seed/love3/400/400" alt=""></div>
-      <div class="ph"><img src="https://picsum.photos/seed/love4/400/400" alt=""></div>
-      <div class="ph"><img src="https://picsum.photos/seed/love5/400/400" alt=""></div>
-      <div class="ph"><img src="https://picsum.photos/seed/love6/400/400" alt=""></div>
+    <h2 class="title text-3xl sm:text-4xl md:text-5xl grad-text text-center mb-4">صورنا 🌸</h2>
+    <p class="text-white/55 text-center mb-10 sm:mb-12 text-sm">صور لاحلي اسم ف الدنيا اسم بنوتي ندي</p>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-4">
+      <div class="ph"><span>🌸</span><img src="images/photo1.jpg" alt="" onerror="this.remove()"></div>
+      <div class="ph"><span>💖</span><img src="images/photo2.jpg" alt="" onerror="this.remove()"></div>
+      <div class="ph"><span>🌷</span><img src="images/photo3.jpg" alt="" onerror="this.remove()"></div>
+      <div class="ph"><span>💕</span><img src="images/photo4.jpg" alt="" onerror="this.remove()"></div>
+      <div class="ph"><span>🦋</span><img src="images/photo5.jpg" alt="" onerror="this.remove()"></div>
+      <div class="ph"><span>🐱</span><img src="images/photo6.jpg" alt="" onerror="this.remove()"></div>
     </div>
   </div>
 </section>
 
 <!-- الهابي مسدج -->
-<section id="message" class="py-20 px-4">
+<section id="message" class="py-20 sm:py-24 px-4 sm:px-5">
   <div class="max-w-3xl mx-auto text-center">
     <div class="divider">❀ ✿ ❀</div>
-    <h2 class="title text-3xl md:text-5xl grad-text mb-4">الهابي مسدج 💌</h2>
-    <p class="text-white/50 mb-10 text-sm">في حاجة جوا الظرف… مستنياكي تفتحيها يا ندي 🌸</p>
+    <h2 class="title text-3xl sm:text-4xl md:text-5xl grad-text mb-4">الهابي مسدج 💌</h2>
+    <p class="text-white/55 mb-10 sm:mb-12 text-sm">في حاجة جوا الظرف… مستنياكي تفتحيها يا ندي 🌸</p>
 
     <div class="env-wrap relative min-h-[420px] flex items-center justify-center">
-      <div id="envelope" class="env glass rounded-[26px] w-full p-8 flex flex-col items-center justify-center">
-        <div class="seal w-20 h-20 rounded-full bg-gradient-to-br from-[#ff8fc0] via-[#f5c6a5] to-[#d8b4fe] flex items-center justify-center text-3xl">🐱</div>
-        <h3 class="title text-xl mt-6 grad-text">رسالة خاصة ليكي</h3>
+
+      <div id="envelope" class="env glass rounded-[26px] sm:rounded-[32px] w-full max-w-md p-8 sm:p-12 flex flex-col items-center justify-center">
+        <div class="seal w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-[#ff8fc0] via-[#f5c6a5] to-[#d8b4fe] flex items-center justify-center text-3xl sm:text-4xl">🐱</div>
+        <h3 class="title text-xl sm:text-2xl mt-5 sm:mt-6 grad-text">رسالة خاصة ليكي</h3>
         <p class="text-white/60 text-sm mt-3">دوسي على الظرف عشان تفتحيه</p>
-        <span class="mt-6 text-xs px-5 py-2 rounded-full border border-[#ff8fc0]/40 text-[#ff8fc0]">اضغطي هنا ✨</span>
+        <span class="mt-6 sm:mt-7 text-xs px-5 sm:px-6 py-2 rounded-full border border-[#ff8fc0]/40 text-[#ff8fc0]">اضغطي هنا ✨</span>
       </div>
 
       <div id="msgCard" class="msg-card text-right">
-        <div class="text-3xl mb-4">💌🌸</div>
-        <h3 class="title text-xl md:text-3xl grad-text mb-4">إلى أغلى إنسانة في الدنيا</h3>
-        
-        <!-- هنا الكلام الطويل مع سكرول -->
-        <div class="msg-content text-white/85 leading-loose text-sm arabic space-y-4">
+        <div class="text-3xl sm:text-4xl mb-3">💌🌸</div>
+        <h3 class="title text-xl sm:text-2xl grad-text mb-4">إلى أغلى إنسانة في الدنيا</h3>
+
+        <div class="msg-content text-white/85 leading-loose text-[13px] sm:text-base arabic space-y-3">
           <p>
-            ندي حبيبه بابا كنت عايز اطمنك يقلب بابا كل شويه بتقوليلي بتخوني هتخوني هتعملني احا يندي هو نا اقدر يحبيبه بابا اخون القمر دي اخون السكرر دي اخون المزه المسكرهه القشطهه المنجايه القمرايه البسكوتايه ندي ؟ دنا ع موتي وحياتك دنا م ساعه ماعرفتك عمري مخونتك ولا فكرت اخونك يقلب بابا ع موتي وحياتك انتي حلوه اوي وجميله م كل حاجه فيكي ماليه عيني ومكفياني ومكتفي بيكي وبعدين دلوقتي نا راجل متجوز المفروض ابقا بفكر ازاي اسعد بيتي واخلي مراتي م ناقصها اي حاجه ف الدنيا واركز ف مراتي وشغلي وبيتي وحياتي واني استقر م فاضي بقا لشغل العيال دا والهطل والقرف دا نا بحب حاجتي نا واستعمالي نا وانتي حاجتي وبتاعتي واستعمالي ودنيتي وحياتي وبنوتي ومراتي وحبيبتي وخطيبتي ودنيتي وحبيبه قلب باباها وعيون بابا وسكره بابا وقشطتي وكل حاجه ليا مقدرش اخونك او اكسرك يقلب راجلك مفيش واحده تملي مكانك عندي انتي احتليتي قلبي وعقلي وكل حاجه فيا ولا عمري اقدر اخون مراتي حبيبه قلبي اغلي حاجه ف حياتي واغلي حاجه عندي يندي انتي نقطه ضعفي حرفيا يندي يندي نا محدش يعرف يلوي دراعي بس انتي نقطه ضعفي بجد وحياتك ف بحافظ عليكي بكل الطرق واكتر مما تتخيلي وبفكر ف كل حاجه مليون مرا قبل منصحك بيها او ااقولك عليها لا واما اقولك لا ع حاجه نا عارف وفاهم بيبقا لا لي ف بحافظ عليكي وبامنك وبحميكي م كل حاجه ف الدنيا اانتي ام عيالي يندي مراتي بيتي جماعتي حياتي كلها نا بحبك ي ام سيف اوي اوي اوي اوي اوي اوي اوي اوي اوي اوي اوي اوي اوي اوي اوي اوي اوي ربنا يخليكي ليا ي "ست البنات" إنتي مش بس اللي بحبها، إنتي البيت اللي برتاح فيه، والصوت اللي بيرجّعني لنفسي لما أتوه.
+            ندي حبيبه بابا كنت عايز اطمنك يقلب بابا كل شويه بتقوليلي بتخوني هتخوني هتعملني احا يندي هو نا اقدر يحبيبه بابا اخون القمر دي اخون السكرر دي اخون المزه المسكرهه القشطهه المنجايه القمرايه البسكوتايه ندي ؟ دنا ع موتي وحياتك دنا م ساعه ماعرفتك عمري مخونتك ولا فكرت اخونك يقلب بابا ع موتي وحياتك انتي حلوه اوي وجميله م كل حاجه فيكي ماليه عيني ومكفياني ومكتفي بيكي وبعدين دلوقتي نا راجل متجوز المفروض ابقا بفكر ازاي اسعد بيتي واخلي مراتي م ناقصها اي حاجه ف الدنيا واركز ف مراتي وشغلي وبيتي وحياتي واني استقر م فاضي بقا لشغل العيال دا والهطل والقرف دا نا بحب حاجتي نا واستعمالي نا وانتي حاجتي وبتاعتي واستعمالي ودنيتي وحياتي وبنوتي ومراتي وحبيبتي وخطيبتي ودنيتي وحبيبه قلب باباها وعيون بابا وسكره بابا وقشطتي وكل حاجه ليا مقدرش اخونك او اكسرك يقلب راجلك مفيش واحده تملي مكانك عندي انتي احتليتي قلبي وعقلي وكل حاجه فيا ولا عمري اقدر اخون مراتي حبيبه قلبي اغلي حاجه ف حياتي واغلي حاجه عندي يندي انتي نقطه ضعفي حرفيا يندي يندي نا محدش يعرف يلوي دراعي بس انتي نقطه ضعفي بجد وحياتك ف بحافظ عليكي بكل الطرق واكتر مما تتخيلي وبفكر ف كل حاجه مليون مرا قبل منصحك بيها او ااقولك عليها لا واما اقولك لا ع حاجه نا عارف وفاهم بيبقا لا لي ف بحافظ عليكي وبامنك وبحميكي م كل حاجه ف الدنيا اانتي ام عيالي يندي مراتي بيتي جماعتي حياتي كلها نا بحبك ي ام سيف اوي اوي اوي اوي اوي اوي اوي اوي اوي اوي اوي اوي اوي اوي اوي اوي اوي ربنا يخليكي ليا ي "ست البنات"
           </p>
-          <p class="text-[#ff4f8b] font-bold text-base mt-4">بحبك ي ندي. 💖</p>
+          <p>
+            إنتي مش بس اللي بحبها، إنتي البيت اللي برتاح فيه، والصوت اللي بيرجّعني لنفسي لما أتوه.
+          </p>
+          <p class="text-[#ff4f8b] font-bold text-base mt-3">بحبك ي ندي. 💖</p>
         </div>
 
-        <div class="mt-6 flex items-center justify-between flex-wrap gap-3">
-          <span class="text-[#f5c6a5] text-sm">— دايمًا ليكي 🌸</span>
-          <button onclick="closeEnvelope()" class="text-xs border border-[#ff8fc0]/40 px-5 py-2 rounded-full text-[#ff8fc0]">اقفلي الرسالة</button>
+        <div class="mt-5 flex items-center justify-between flex-wrap gap-3">
+          <span class="text-[#f5c6a5] text-xs sm:text-sm">— دايمًا ليكي 🌸</span>
+          <button onclick="closeEnvelope()" class="text-xs border border-[#ff8fc0]/40 px-4 sm:px-5 py-2 rounded-full text-[#ff8fc0]">اقفلي الرسالة</button>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
 <!-- أسباب بحبك -->
-<section id="reasons" class="py-16 px-4">
+<section id="reasons" class="py-16 sm:py-20 px-4 sm:px-5">
   <div class="max-w-6xl mx-auto">
     <div class="divider">❀ ✿ ❀</div>
-    <h2 class="title text-3xl md:text-5xl grad-text text-center mb-4">أسباب لي بدمن ندي</h2>
-    <p class="text-white/50 text-center mb-10 text-sm">لو قعدت أعد… مش هخلص</p>
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-      <div class="glass rounded-3xl p-6 card-hover">
-        <div class="text-3xl mb-3">🌸</div>
-        <h3 class="font-bold text-lg mb-2 grad-text">ضحكتها المسكره</h3>
-        <p class="text-white/60 text-sm arabic">أحلى صوت في الدنيا.</p>
+    <h2 class="title text-3xl sm:text-4xl md:text-5xl grad-text text-center mb-4">أسباب لي بدمن ندي</h2>
+    <p class="text-white/55 text-center mb-10 sm:mb-12 text-sm">لو قعدت أعد… مش هخلص</p>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
+      <div class="glass rounded-3xl p-6 sm:p-7 card-hover">
+        <div class="text-3xl sm:text-4xl mb-3">🌸</div>
+        <h3 class="font-bold text-base sm:text-lg mb-2 grad-text">ضحكتها المسكره</h3>
+        <p class="text-white/60 text-sm leading-relaxed arabic">أحلى صوت في الدنيا.</p>
       </div>
-      <div class="glass rounded-3xl p-6 card-hover">
-        <div class="text-3xl mb-3">💖</div>
-        <h3 class="font-bold text-lg mb-2 grad-text">انها قلب باباها م جوا</h3>
-        <p class="text-white/60 text-sm arabic">حنينه ورقيقه ومسكره وصغننه وعسوله</p>
+      <div class="glass rounded-3xl p-6 sm:p-7 card-hover">
+        <div class="text-3xl sm:text-4xl mb-3">💖</div>
+        <h3 class="font-bold text-base sm:text-lg mb-2 grad-text">انها قلب باباها م جوا</h3>
+        <p class="text-white/60 text-sm leading-relaxed arabic">حنينه ورقيقه ومسكره وصغننه وعسوله</p>
       </div>
-      <div class="glass rounded-3xl p-6 card-hover">
-        <div class="text-3xl mb-3">🐱</div>
-        <h3 class="font-bold text-lg mb-2 grad-text">دلعك</h3>
-        <p class="text-white/60 text-sm arabic">طبعا دي م محتاج اوصفها يعني يمراتيييي</p>
+      <div class="glass rounded-3xl p-6 sm:p-7 card-hover">
+        <div class="text-3xl sm:text-4xl mb-3">🐱</div>
+        <h3 class="font-bold text-base sm:text-lg mb-2 grad-text">دلعك</h3>
+        <p class="text-white/60 text-sm leading-relaxed arabic">طبعا دي م محتاج اوصفها يعني يمراتيييي</p>
       </div>
-      <div class="glass rounded-3xl p-6 card-hover">
-        <div class="text-3xl mb-3">☕</div>
-        <h3 class="font-bold text-lg mb-2 grad-text">الأمان</h3>
-        <p class="text-white/60 text-sm arabic">بعشق احسسك ب الامان وانتي ف حضني يقلب راجلك زي مكنتي ف حضني وبتنامي كدا</p>
+      <div class="glass rounded-3xl p-6 sm:p-7 card-hover">
+        <div class="text-3xl sm:text-4xl mb-3">☕</div>
+        <h3 class="font-bold text-base sm:text-lg mb-2 grad-text">الأمان</h3>
+        <p class="text-white/60 text-sm leading-relaxed arabic">بعشق احسسك ب الامان وانتي ف حضني يقلب راجلك زي مكنتي ف حضني وبتنامي كدا</p>
       </div>
-      <div class="glass rounded-3xl p-6 card-hover">
-        <div class="text-3xl mb-3">🌷</div>
-        <h3 class="font-bold text-lg mb-2 grad-text">تفاصيلك الصغيرة</h3>
-        <p class="text-white/60 text-sm arabic">بومتي وقططتي ومراتي وحبيبتي</p>
+      <div class="glass rounded-3xl p-6 sm:p-7 card-hover">
+        <div class="text-3xl sm:text-4xl mb-3">🌷</div>
+        <h3 class="font-bold text-base sm:text-lg mb-2 grad-text">تفاصيلك الصغيرة</h3>
+        <p class="text-white/60 text-sm leading-relaxed arabic">بومتي وقططتي ومراتي وحبيبتي</p>
       </div>
-      <div class="glass rounded-3xl p-6 card-hover">
-        <div class="text-3xl mb-3">♾️</div>
-        <h3 class="font-bold text-lg mb-2 grad-text">إنك إنتي</h3>
-        <p class="text-white/60 text-sm arabic">مش محتاج سبب أكبر من إنك ببساطة… ندي وانتي عارفه يعني اي ندي ب النسبالي.</p>
+      <div class="glass rounded-3xl p-6 sm:p-7 card-hover">
+        <div class="text-3xl sm:text-4xl mb-3">♾️</div>
+        <h3 class="font-bold text-base sm:text-lg mb-2 grad-text">إنك إنتي</h3>
+        <p class="text-white/60 text-sm leading-relaxed arabic">مش محتاج سبب أكبر من إنك ببساطة… ندي وانتي عارفه يعني اي ندي ب النسبالي.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- زر المفاجأة -->
-<section class="py-20 px-4 text-center">
+<section class="py-20 sm:py-24 px-4 sm:px-5 text-center">
   <div class="divider">❀ ✿ ❀</div>
-  <h2 class="title text-3xl md:text-5xl grad-text mb-5">فيه مفاجأة صغيرة 🎁</h2>
-  <p class="text-white/50 mb-8 text-sm">دوسي بس… وشوفي 🌸</p>
+  <h2 class="title text-3xl sm:text-4xl md:text-5xl grad-text mb-5">فيه مفاجأة صغيرة 🎁</h2>
+  <p class="text-white/55 mb-8 sm:mb-10 text-sm">دوسي بس… وشوفي 🌸</p>
   <button onclick="surprise()" class="btn-magic">دوسي هنا 💥</button>
 </section>
 
 <!-- فوتر -->
-<footer class="py-12 border-t border-[#ff8fc0]/15 text-center px-4">
+<footer class="py-12 sm:py-14 border-t border-[#ff8fc0]/15 text-center px-4 sm:px-5">
   <div class="text-3xl mb-3 heart-beat">💖</div>
-  <p class="title text-xl grad-text mb-2">بحبك ي ندي</p>
-  <p class="text-white/40 text-sm arabic">اتعمل … مخصوص عشانك</p>
+  <p class="title text-xl sm:text-2xl grad-text mb-2">بحبك ي ندي</p>
+  <p class="text-white/45 text-sm arabic">اتعمل … مخصوص عشانك</p>
   <p class="text-white/25 text-xs mt-4">© <span id="year"></span> — كل الحقوق لقلبي 🌸</p>
 </footer>
 
 <script>
 /* ========== 1) بوابة القفل ========== */
 (function(){
-  var _s = 671655; // بصمة الباسورد
+  var _s = 671655;
   function _h(str){ var h = 0; for (var i = 0; i < str.length; i++){ h = (h * 31 + str.charCodeAt(i)) % 1000003; } return h; }
 
   var lockEl = document.getElementById('lock');
@@ -525,7 +568,7 @@
   pwEl.addEventListener('keydown', function(e){ if (e.key === 'Enter') window.tryUnlock(); });
 })();
 
-/* ========== 2) الأنيميشن (مخفف جداً عشان الموبايل) ========== */
+/* ========== 2) الأنيميشن (مخفف للأداء) ========== */
 var FLOATERS = ['💖','💕','🌸','🌷','🦋','🐱','🐈','😻'];
 var PETALS = ['🌸','🌷','🌺','🌹'];
 var WORDS = ['ندي 💖','ندي مراتي 💍','ندي بنوتي 🎀','بحبك ي ندي ❤️','ندي 🌸'];
@@ -569,14 +612,13 @@ function spawnWord(){
 }
 
 function startAll(){
-  // قللنا معدل الظهور جداً عشان الأداء
   for (var i = 0; i < 5; i++) setTimeout(spawnFloat, i*500);
-  setInterval(spawnFloat, 3500); // كل 3.5 ثانية بدل 0.9
+  setInterval(spawnFloat, 3500);
 
   for (var j = 0; j < 3; j++) setTimeout(spawnPetal, j*800);
-  setInterval(spawnPetal, 5000); // كل 5 ثواني
+  setInterval(spawnPetal, 5000);
 
-  setInterval(spawnWord, 6000); // كلمة ندي كل 6 ثواني
+  setInterval(spawnWord, 6000);
 }
 
 /* ========== 3) عدّاد الحب ========== */
