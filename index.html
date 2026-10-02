@@ -79,7 +79,6 @@
     background:linear-gradient(90deg, transparent, rgba(255,143,192,.5), transparent);
   }
 
-  /* شاشة القفل */
   .lock{
     position:fixed; inset:0; z-index:9999;
     display:flex; align-items:center; justify-content:center; padding:20px;
@@ -151,7 +150,6 @@
     75%{ transform:translateX(8px) }
   }
 
-  /* الظرف والرسالة */
   .env-wrap{ perspective:1000px; width: 100%; }
   .env{
     cursor:pointer; transition:.6s cubic-bezier(.4,0,.2,1);
@@ -207,7 +205,7 @@
   }
   .ph:hover img{ transform:scale(1.08) }
 
-  audio{ width:100%; border-radius:12px; filter: invert(0.9) hue-rotate(300deg) saturate(0.7); }
+  audio{ width:100%; border-radius:12px; }
 
   .btn-magic{
     background:linear-gradient(90deg,#ff8fc0,#f5c6a5); color:#2a0a1a;
@@ -237,7 +235,6 @@
 </head>
 <body class="locked">
 
-<!-- ========== شاشة القفل ========== -->
 <div id="lock" class="lock">
   <div class="walking-cat">🐈‍⬛</div>
   <div class="corner-cat">🐱</div>
@@ -259,8 +256,6 @@
   </div>
 </div>
 
-<!-- ========== الموقع ========== -->
-
 <nav class="fixed top-0 inset-x-0 z-50">
   <div class="max-w-6xl mx-auto px-3 sm:px-4 py-3 flex items-center justify-between gap-2">
     <span class="title text-lg sm:text-xl grad-text whitespace-nowrap">بحبك يندي 🌸</span>
@@ -268,7 +263,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="home" class="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-5 pt-20 pb-10 relative">
   <p class="text-[#f5c6a5] tracking-[.35em] sm:tracking-[.5em] text-[10px] sm:text-sm mb-6">SINCE 09 · 02 · 2024</p>
 
@@ -296,7 +290,6 @@
   <div class="absolute bottom-6 sm:bottom-8 animate-bounce text-[#ff8fc0] text-2xl">↓</div>
 </section>
 
-<!-- العدّاد -->
 <section id="counter" class="py-16 sm:py-20 px-4 sm:px-5">
   <div class="max-w-5xl mx-auto text-center">
     <div class="divider">❀ ✿ ❀</div>
@@ -332,7 +325,6 @@
   </div>
 </section>
 
-<!-- التايم لاين -->
 <section id="story" class="py-16 sm:py-20 px-4 sm:px-5">
   <div class="max-w-3xl mx-auto">
     <div class="divider">❀ ✿ ❀</div>
@@ -381,7 +373,7 @@
   </div>
 </section>
 
-<!-- الأغنية -->
+<!-- ⚠️ الأغنية - غيرنا المسار من images/amr-diab.mp3 ل amr-diab.mp3 -->
 <section id="music" class="py-16 sm:py-20 px-4 sm:px-5">
   <div class="max-w-2xl mx-auto text-center">
     <div class="divider">♪ ♫ ♪</div>
@@ -396,14 +388,14 @@
       <h3 class="font-bold text-xl sm:text-2xl grad-text">اغنيه ندي بنتي المفضله</h3>
       <p class="text-white/55 text-sm mb-6 sm:mb-7">نفسي افهم حرففف</p>
 
-      <audio controls src="images/amr-diab.mp3">
+      <audio controls preload="metadata" src="amr-diab.mp3">
         متصفحك مش بيدعم الصوت
       </audio>
     </div>
   </div>
 </section>
 
-<!-- الجاليري -->
+<!-- ⚠️ الصور - غيرنا المسار من images/photoX.jpg ل photoX.jpg -->
 <section id="gallery" class="py-16 sm:py-20 px-4 sm:px-5">
   <div class="max-w-6xl mx-auto">
     <div class="divider">❀ ✿ ❀</div>
@@ -411,17 +403,16 @@
     <p class="text-white/55 text-center mb-10 sm:mb-12 text-sm">صور لاحلي اسم ف الدنيا اسم بنوتي ندي</p>
 
     <div class="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-4">
-      <div class="ph"><span>🌸</span><img src="images/photo1.jpg" alt="" onerror="this.remove()"></div>
-      <div class="ph"><span>💖</span><img src="images/photo2.jpg" alt="" onerror="this.remove()"></div>
-      <div class="ph"><span>🌷</span><img src="images/photo3.jpg" alt="" onerror="this.remove()"></div>
-      <div class="ph"><span>💕</span><img src="images/photo4.jpg" alt="" onerror="this.remove()"></div>
-      <div class="ph"><span>🦋</span><img src="images/photo5.jpg" alt="" onerror="this.remove()"></div>
-      <div class="ph"><span>🐱</span><img src="images/photo6.jpg" alt="" onerror="this.remove()"></div>
+      <div class="ph"><span>🌸</span><img src="photo1.jpg" alt="" onerror="this.remove()"></div>
+      <div class="ph"><span>💖</span><img src="photo2.jpg" alt="" onerror="this.remove()"></div>
+      <div class="ph"><span>🌷</span><img src="photo3.jpg" alt="" onerror="this.remove()"></div>
+      <div class="ph"><span>💕</span><img src="photo4.jpg" alt="" onerror="this.remove()"></div>
+      <div class="ph"><span>🦋</span><img src="photo5.jpg" alt="" onerror="this.remove()"></div>
+      <div class="ph"><span>🐱</span><img src="photo6.jpg" alt="" onerror="this.remove()"></div>
     </div>
   </div>
 </section>
 
-<!-- الهابي مسدج -->
 <section id="message" class="py-20 sm:py-24 px-4 sm:px-5">
   <div class="max-w-3xl mx-auto text-center">
     <div class="divider">❀ ✿ ❀</div>
@@ -461,7 +452,6 @@
   </div>
 </section>
 
-<!-- أسباب بحبك -->
 <section id="reasons" class="py-16 sm:py-20 px-4 sm:px-5">
   <div class="max-w-6xl mx-auto">
     <div class="divider">❀ ✿ ❀</div>
@@ -503,7 +493,6 @@
   </div>
 </section>
 
-<!-- زر المفاجأة -->
 <section class="py-20 sm:py-24 px-4 sm:px-5 text-center">
   <div class="divider">❀ ✿ ❀</div>
   <h2 class="title text-3xl sm:text-4xl md:text-5xl grad-text mb-5">فيه مفاجأة صغيرة 🎁</h2>
@@ -511,7 +500,6 @@
   <button onclick="surprise()" class="btn-magic">دوسي هنا 💥</button>
 </section>
 
-<!-- فوتر -->
 <footer class="py-12 sm:py-14 border-t border-[#ff8fc0]/15 text-center px-4 sm:px-5">
   <div class="text-3xl mb-3 heart-beat">💖</div>
   <p class="title text-xl sm:text-2xl grad-text mb-2">بحبك ي ندي</p>
@@ -520,7 +508,6 @@
 </footer>
 
 <script>
-/* ========== 1) بوابة القفل ========== */
 (function(){
   var _s = 671655;
   function _h(str){ var h = 0; for (var i = 0; i < str.length; i++){ h = (h * 31 + str.charCodeAt(i)) % 1000003; } return h; }
@@ -568,7 +555,6 @@
   pwEl.addEventListener('keydown', function(e){ if (e.key === 'Enter') window.tryUnlock(); });
 })();
 
-/* ========== 2) الأنيميشن (مخفف للأداء) ========== */
 var FLOATERS = ['💖','💕','🌸','🌷','🦋','🐱','🐈','😻'];
 var PETALS = ['🌸','🌷','🌺','🌹'];
 var WORDS = ['ندي 💖','ندي مراتي 💍','ندي بنوتي 🎀','بحبك ي ندي ❤️','ندي 🌸'];
@@ -621,7 +607,6 @@ function startAll(){
   setInterval(spawnWord, 6000);
 }
 
-/* ========== 3) عدّاد الحب ========== */
 var startDate = new Date("2024-02-09T00:00:00");
 function updateCounter(){
   var now = new Date();
@@ -641,7 +626,6 @@ function updateCounter(){
 updateCounter();
 setInterval(updateCounter, 1000);
 
-/* ========== 4) الظرف ========== */
 var envelope = document.getElementById('envelope');
 var msgCard = document.getElementById('msgCard');
 
@@ -656,7 +640,6 @@ function closeEnvelope(){
   msgCard.classList.remove('show');
 }
 
-/* ========== 5) زر المفاجأة ========== */
 function surprise(){
   for (var i = 0; i < 30; i++){ setTimeout(spawnFloat, i*60); }
   document.body.animate([{transform:'translateX(0)'},{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}], {duration:300});
